@@ -1,0 +1,101 @@
+/* [project]/src/styles/notification.css [app-client] (css) */
+.notification {
+  position: fixed;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px #00000026;
+  z-index: 1000;
+  font-weight: 500;
+  animation: .3s ease-out forwards slideUp;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 90%;
+  width: auto;
+}
+
+.notification.success {
+  background-color: #fff;
+  color: #333;
+  border-left: 4px solid gold;
+}
+
+.notification.error {
+  background-color: #fff;
+  color: #333;
+  border-left: 4px solid #e50000;
+}
+
+@media (width >= 768px) {
+  .notification {
+    bottom: 30px;
+    right: 30px;
+    max-width: 350px;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (width <= 767px) {
+  .notification {
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    border-left: none;
+    border-bottom: 3px solid;
+  }
+
+  .notification.success {
+    border-bottom-color: gold;
+  }
+
+  .notification.error {
+    border-bottom-color: #e50000;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.notification:before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex-shrink: 0;
+}
+
+.notification.success:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFD700'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+}
+
+.notification.error:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E50000'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E");
+}
+
+/*# sourceMappingURL=src_styles_notification_b52d8e88.css.map*/

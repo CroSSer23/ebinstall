@@ -18,11 +18,15 @@ const Header = () => {
         <div className="contact-items">
           <div className="contact-item">
             <FaPhone size={14} />
-            <a href="tel:+44123456789"> +44 (12) 345-6789</a>
+            <a href="tel:+447478136061"> +44 7478 136061</a>
+          </div>
+          <div className="contact-item">
+            <FaPhone size={14} />
+            <a href="tel:+447340626369"> +44 7340 626369</a>
           </div>
           <div className="contact-item">
             <FaEnvelope size={14} />
-            <a href="mailto:info@ebinstall.com"> info@ebinstall.com</a>
+            <a href="mailto:e.b.install.ltd@gmail.com"> e.b.install.ltd@gmail.com</a>
           </div>
         </div>
         <button className="cart-button" onClick={openCart}>
