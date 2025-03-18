@@ -1,0 +1,48 @@
+@import "tailwindcss";
+@import '../styles/components.css';
+
+:root {
+  --primary-color: #FFD700; /* Желтый */
+  --secondary-color: #FFF9E0; /* Светло-желтый */
+  --accent-color: #E50000; /* Красный */
+  --dark-gray: #333;
+  --medium-gray: #666;
+  --light-gray: #f4f4f4;
+  --white: #fff;
+  --border-color: #ddd;
+  --card-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  --hover-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  --header-height: 70px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--light-gray);
+  padding-bottom: 60px;
+  color: var(--dark-gray);
+  line-height: 1.6;
+  padding-top: var(--header-height);
+}
+
+a {
+  text-decoration: none;
+}
