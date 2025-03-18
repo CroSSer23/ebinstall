@@ -4,6 +4,19 @@ import { sheetsService } from '@/services/sheetsService';
 import { EquipmentTypes } from '@/types/equipment';
 import { leverHoistSvg, roundSlingSvg, webbedSlingSvg } from '@/data/equipmentIcons';
 
+// Тип для данных оборудования
+interface EquipmentDataItem {
+  swlOptions?: string[];
+  lengthOptions?: string[];
+  holOptions?: string[];
+  priceMapping?: Record<string, Record<string, number>>;
+  specs?: string[];
+  image?: string;
+  availableColors?: string[];
+  title?: string;
+  [key: string]: unknown;
+}
+
 // Фиксированный URL для загрузки данных Google Sheets
 const GOOGLE_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/1aulId2489sH3YyxJKpfvIWq7-yWdvhVK/edit?gid=1275867136';
 
@@ -15,7 +28,7 @@ const defaultSvgIcons: Record<string, string> = {
 };
 
 const EquipmentContainer: React.FC = () => {
-  const [equipmentData, setEquipmentData] = useState<Record<string, any> | null>(null);
+  const [equipmentData, setEquipmentData] = useState<Record<string, EquipmentDataItem> | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -64,7 +77,7 @@ const EquipmentContainer: React.FC = () => {
     if (!equipmentData) return [];
     
     // Собираем все элементы оборудования из разных категорий в единый массив
-    const allItems: Array<{type: string, title: string, data: any}> = [];
+    const allItems: Array<{type: string, title: string, data: EquipmentDataItem}> = [];
     
     Object.entries(equipmentData).forEach(([type, typeData]) => {
       // Проверяем, что у нас есть корректные данные для этого типа оборудования

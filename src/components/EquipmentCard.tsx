@@ -7,7 +7,18 @@ import { useCart } from '@/context/CartContext';
 interface EquipmentCardProps {
   type: string;
   title: string;
-  data?: any;
+  data?: {
+    swlOptions?: string[];
+    lengthOptions?: string[];
+    holOptions?: string[];
+    priceMapping?: Record<string, Record<string, number>>;
+    specs?: string[];
+    image?: string;
+    availableColors?: string[];
+    basePrice?: number;
+    selectedColor?: string;
+    [key: string]: any; // Для остальных возможных свойств
+  };
   defaultIcon?: string;
 }
 
@@ -15,7 +26,6 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({ type, title, data, defaul
   const [selectedSWL, setSelectedSWL] = useState<string>('');
   const [selectedLength, setSelectedLength] = useState<string>('');
   const [price, setPrice] = useState<number>(0);
-  const [showPriceTable, setShowPriceTable] = useState<boolean>(false);
   const [showSpecs, setShowSpecs] = useState<boolean>(false);
   const [quantity, setQuantity] = useState<number>(1);
   
@@ -62,13 +72,6 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({ type, title, data, defaul
     }
   }, [data]);
 
-  // Use effect to update price when selector values change
-  useEffect(() => {
-    if (selectedSWL && selectedLength) {
-      updatePrice(selectedSWL, selectedLength);
-    }
-  }, [selectedSWL, selectedLength, data]);
-
   // Price update function
   const updatePrice = (swl: string, length: string) => {
     if (!data || !data.priceMapping) {
@@ -81,13 +84,13 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({ type, title, data, defaul
     if (data.priceMapping[swl] && data.priceMapping[swl][length]) {
       // Structure priceMapping[swl][length]
       const newPrice = data.priceMapping[swl][length];
-      setPrice(newPrice);
+      setPrice(typeof newPrice === 'number' ? newPrice : 0);
     } else {
       // Check alternative format key "swl|length"
       const key = `${swl}|${length}`;
       if (data.priceMapping[key]) {
         const newPrice = data.priceMapping[key];
-        setPrice(newPrice);
+        setPrice(typeof newPrice === 'number' ? newPrice : 0);
       } else if (data.basePrice) {
         setPrice(data.basePrice);
       } else {
@@ -129,15 +132,17 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({ type, title, data, defaul
 
   // Function to add item to cart
   const handleAddToCart = () => {
+    if (!data) return;
+    
     addToCart({
       type,
       title,
       swl: selectedSWL,
       length: selectedLength,
-      color: data.selectedColor ? data.selectedColor : undefined,
+      color: data?.selectedColor,
       price,
       quantity,
-      image: data.image || ''
+      image: data?.image || ''
     });
   };
 

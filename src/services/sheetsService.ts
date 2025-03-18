@@ -1,4 +1,4 @@
-import { EquipmentDataService, EquipmentRow, EquipmentSpecsRow, EquipmentType, SheetsData } from '@/types/equipment';
+import { ComponentData, EquipmentDataService, EquipmentRow, EquipmentSpecsRow, EquipmentType, SheetsData } from '@/types/equipment';
 
 export class GoogleSheetsService implements EquipmentDataService {
   /**
@@ -157,7 +157,7 @@ export class GoogleSheetsService implements EquipmentDataService {
 
       // Проверяем, что все необходимые колонки найдены
       const missingColumns = Object.entries(equipmentColumnIndexes)
-        .filter(([_, index]) => index === -1)
+        .filter(([, index]) => index === -1)
         .map(([name]) => name);
       
       if (missingColumns.length > 0) {
@@ -275,8 +275,8 @@ export class GoogleSheetsService implements EquipmentDataService {
   /**
    * Преобразует данные из Google Sheets в структуру данных для компонентов
    */
-  transformToComponentData(data: SheetsData): Record<EquipmentType, any> {
-    const result: Record<EquipmentType, any> = {} as Record<EquipmentType, any>;
+  transformToComponentData(data: SheetsData): Record<EquipmentType, ComponentData> {
+    const result: Record<EquipmentType, ComponentData> = {} as Record<EquipmentType, ComponentData>;
     
     // Группировка данных по типу оборудования
     const itemsByType: Record<string, EquipmentRow[]> = {};

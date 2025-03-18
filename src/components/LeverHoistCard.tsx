@@ -75,22 +75,6 @@ export default function LeverHoistCard({ data, defaultIcon }: LeverHoistCardProp
     setSelectedHOL(e.target.value);
   };
   
-  // Toggle price table visibility
-  const togglePriceTable = () => {
-    setShowPriceTable(!showPriceTable);
-    if (!showPriceTable) {
-      setShowSpecifications(false);
-    }
-  };
-  
-  // Toggle specifications visibility
-  const toggleSpecifications = () => {
-    setShowSpecifications(!showSpecifications);
-    if (!showSpecifications) {
-      setShowPriceTable(false);
-    }
-  };
-
   const handleRequestClick = () => {
     if (typeof window !== 'undefined') {
       const enquirySection = document.querySelector('.enquiry-section');

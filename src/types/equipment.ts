@@ -96,9 +96,21 @@ export interface SheetsData {
   specs: Record<EquipmentType, EquipmentSpecsRow>;
 }
 
+// Интерфейс для данных компонентов
+export interface ComponentData {
+  swlOptions: string[];
+  lengthOptions: string[];
+  holOptions?: string[];
+  priceMapping: Record<string, Record<string, number>>;
+  specs: string[];
+  image: string;
+  availableColors?: string[];
+  [key: string]: unknown;
+}
+
 // Интерфейс функций API для работы с данными
 export interface EquipmentDataService {
   fetchEquipmentData(sheetUrl: string): Promise<SheetsData>;
   processSheetData(equipmentRows: string[][], specsRows: string[][]): SheetsData;
-  transformToComponentData(data: SheetsData): Record<EquipmentType, any>;
+  transformToComponentData(data: SheetsData): Record<EquipmentType, ComponentData>;
 } 

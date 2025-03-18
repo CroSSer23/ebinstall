@@ -81,15 +81,7 @@ const CartSidebar: React.FC = () => {
     // Update customer info in context
     setCustomerInfo(customerInfo);
     
-    // Prepare order data
-    const orderData = {
-      items: cart.items,
-      totalPrice: cart.totalPrice,
-      customerInfo
-    };
-    
-    setOrderStatus('loading');
-    
+    // Отправляем заказ на сервер
     try {
       // Send data via email
       const emailContent = `

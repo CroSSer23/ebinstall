@@ -5,7 +5,7 @@ const EnquirySection: React.FC = () => {
     <section className="enquiry-section" id="enquiry-form">
       <h2 className="enquiry-title">Need Equipment for Your Project?</h2>
       <p className="enquiry-text">
-        Submit a request and we'll help you select the right equipment 
+        Submit a request and we&apos;ll help you select the right equipment 
         to meet your technical requirements and project timeline.
       </p>
       <a href="#" id="enquire-button" className="enquiry-button">

@@ -3,6 +3,7 @@
 import React from 'react';
 import { FaPhone, FaEnvelope, FaShoppingCart } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
+import Link from 'next/link';
 
 const Header = () => {
   const { openCart, cart } = useCart();
@@ -10,10 +11,10 @@ const Header = () => {
 
   return (
     <div className="top-header">
-      <a href="/" className="logo">
+      <Link href="/" className="logo">
         <span className="eb-logo">EB</span>
         <span className="install-word">INSTALL</span>
-      </a>
+      </Link>
       <div className="top-nav">
         <div className="contact-items">
           <div className="contact-item">
