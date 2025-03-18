@@ -17,7 +17,7 @@ interface EquipmentCardProps {
     availableColors?: string[];
     basePrice?: number;
     selectedColor?: string;
-    [key: string]: any; // Для остальных возможных свойств
+    [key: string]: unknown; // Для остальных возможных свойств
   };
   defaultIcon?: string;
 }
@@ -40,7 +40,7 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({ type, title, data, defaul
   // Define CSS class for the card
   const getCardClass = () => {
     // Base class for all cards
-    let baseClass = 'equipment-card catalog-item';
+    const baseClass = 'equipment-card catalog-item';
     
     // For standard types add their specific styles
     if (isLeverHoist) return `${baseClass} leverHoist-card`;
@@ -71,6 +71,14 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({ type, title, data, defaul
       );
     }
   }, [data]);
+
+  // Use effect to update price when selector values change
+  useEffect(() => {
+    if (selectedSWL && selectedLength) {
+      updatePrice(selectedSWL, selectedLength);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedSWL, selectedLength, data]);
 
   // Price update function
   const updatePrice = (swl: string, length: string) => {

@@ -12,8 +12,9 @@ export default function LeverHoistCard({ data, defaultIcon }: LeverHoistCardProp
   const [selectedSWL, setSelectedSWL] = useState<string>('0.5t');
   const [selectedHOL, setSelectedHOL] = useState<string>('1.5m');
   const [price, setPrice] = useState<number>(0);
-  const [showPriceTable, setShowPriceTable] = useState(false);
-  const [showSpecifications, setShowSpecifications] = useState(false);
+  // Состояния для отображения/скрытия UI элементов, которые могут быть использованы в будущем
+  // const [showPriceTable, setShowPriceTable] = useState(false);
+  // const [showSpecifications, setShowSpecifications] = useState(false);
   
   // Данные по умолчанию, если не предоставлены данные из Google Sheets
   const defaultData: LeverHoistData = {
@@ -163,7 +164,7 @@ export default function LeverHoistCard({ data, defaultIcon }: LeverHoistCardProp
         </div>
       </div>
       
-      {showPriceTable && (
+      {/* {showPriceTable && (
         <div className="pricing-table">
           <div className="price-table-scroller">
             <table>
@@ -199,7 +200,7 @@ export default function LeverHoistCard({ data, defaultIcon }: LeverHoistCardProp
             </table>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 } 
